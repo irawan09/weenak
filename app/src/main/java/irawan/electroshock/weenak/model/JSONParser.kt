@@ -19,13 +19,13 @@ class JSONParser {
             val response = service.getData()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    val gson = GsonBuilder().setPrettyPrinting().create()
-                    var prettyJson = gson.toJson(response.body())
-                    Log.d("Pretty JSON response ", prettyJson)
+//                    val gson = GsonBuilder().setPrettyPrinting().create()
+//                    var prettyJson = gson.toJson(response.body())
+//                    Log.d("Pretty JSON response ", prettyJson)
 
                     val items = response.body()?.feed
-                    Log.d("Body Response ", items.toString())
-                    Log.d("Items count ", items?.count().toString())
+//                    Log.d("Body Response ", items.toString())
+//                    Log.d("Items count ", items?.count().toString())
 
                     if (items != null) {
                         for (i in 0 until items.count()) {
@@ -43,7 +43,9 @@ class JSONParser {
                             if (foodIngredient != null) {
                                 for (j in 0 until foodIngredient.count()){
                                     var ingredient = foodIngredient[j].ingredient
+                                    Log.d("Number of ingredients ", ingredient?.count().toString())
                                     Log.d("Food ingredients ", ingredient.toString())
+//                                    break
                                 }
                             }
                             break
