@@ -59,6 +59,16 @@ class MainActivity : ComponentActivity() {
                     val gson = GsonBuilder().setPrettyPrinting().create()
                     prettyJson = gson.toJson(response.body())
                     Log.d("Pretty JSON response ", prettyJson)
+
+                    val items = response.body()?.feed
+                    Log.d("Body Response ", items.toString())
+                    Log.d("Items count ", items?.count().toString())
+
+                    if (items != null){
+                        for (i in 0 until items.count()){
+
+                        }
+                    }
                 }
             }
         }
@@ -80,7 +90,7 @@ class MainActivity : ComponentActivity() {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val nw = connectivityManager.activeNetwork ?: return false
-                val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
+                val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return  false
                 return when {
                     actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
                     actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true

@@ -6,7 +6,6 @@ data class JSONModel(
 
     @SerializedName("feed")
     val feed: ArrayList<FeedData>?,
-
 )
 
 data class FeedData(
@@ -19,7 +18,6 @@ data class FeedData(
 
     @SerializedName("content")
     val content : Content?
-
 )
 
 data class Display(
@@ -38,8 +36,42 @@ data class SEOData(
 )
 
 data class Content(
+
     @SerializedName("preparationSteps")
-    val prepartionsSteps : List<String>?
+    val prepartionsSteps : List<String>?,
+
+    @SerializedName("videos")
+    val videos : Videos?,
+
+    @SerializedName("details")
+    val details : Details?,
+
+    @SerializedName("ingredientsLines")
+    val ingredientsLines : Ingredients?
+)
+
+data class Videos(
+
+    @SerializedName("originalVideoUrl")
+    val originalVideoUrl : String?
+)
+
+data class Details(
+
+    @SerializedName("totalTime")
+    val totalTime : String?,
+
+    @SerializedName("numberOfServings")
+    val numberOfServings : String?,
+
+    @SerializedName("rating")
+    val rating : String?
+)
+
+data class Ingredients(
+
+    @SerializedName("wholeLine")
+    val ingredients: String?,
 )
 
 data class Web(
