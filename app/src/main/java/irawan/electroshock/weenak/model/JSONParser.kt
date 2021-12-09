@@ -36,14 +36,19 @@ class JSONParser {
                             var foodNumberOfServings = items[i].content?.details?.numberOfServings
                             var foodRatings = items[i].content?.details?.rating
                             var foodIngredient = items[i].content?.ingredientLines
-                            Log.d("Food name ", foodName.toString())
+//                            Log.d("Food name ", foodName.toString())
 
                             if (foodIngredient != null) {
                                 for (j in 0 until foodIngredient.count()){
+                                    val ingredients = mutableListOf<String>()
+
+                                    var ingredient = foodIngredient[j].ingredient
+                                    ingredients.add(ingredient.toString())
+                                    Log.d("Food ingredients ", ingredients.toString())
 
                                 }
                             }
-
+                            break
                         }
                     }
                 }
