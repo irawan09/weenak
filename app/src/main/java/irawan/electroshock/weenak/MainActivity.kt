@@ -17,6 +17,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
+import irawan.electroshock.weenak.model.JSONParser
 import irawan.electroshock.weenak.ui.theme.WeenakTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,45 +28,18 @@ import okhttp3.Request
 
 class MainActivity : ComponentActivity() {
 
-    private var prettyJson: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContext(this)
-        JSONData()
+        JSONParser().JSONData()
         setContent {
             WeenakTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting(prettyJson)
+                    Greeting("Irawan")
                 }
             }
         }
-    }
-
-    fun JSONData(){
-        val service = RetrofitServiceFactory.createService()
-
-        CoroutineScope(Dispatchers.IO).launch{
-            val response = service.getData()
-            withContext(Dispatchers.Main){
-                if (response.isSuccessful){
-                    val gson = GsonBuilder().setPrettyPrinting().create()
-                    prettyJson = gson.toJson(response.body())
-                    Log.d("Pretty JSON response ", prettyJson)
-
-                    val items = response.body()?.feed
-                    Log.d("Body Response ", items.toString())
-                    Log.d("Items count ", items?.count().toString())
-
-                    if (items != null){
-                        for (i in 0 until items.count()){
-
-                        }
-                    }
-                }
-            }
-        }
-
     }
 
     companion object{
@@ -102,7 +76,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "test $name")
+    Text(text = "Hello $name")
 }
 
 @Preview(showBackground = true)
