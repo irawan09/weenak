@@ -45,17 +45,12 @@ class MainActivity : ComponentActivity() {
     }
 
     fun JSONData(){
-
         val service = RetrofitServiceFactory.createService()
 
         CoroutineScope(Dispatchers.IO).launch{
-
             val response = service.getData()
-            Log.d("Sampe sini", response.toString())
-
             withContext(Dispatchers.Main){
                 if (response.isSuccessful){
-                    // Convert raw JSON to pretty JSON using GSON library
                     val gson = GsonBuilder().setPrettyPrinting().create()
                     prettyJson = gson.toJson(response.body())
                     Log.d("Pretty JSON response ", prettyJson)
