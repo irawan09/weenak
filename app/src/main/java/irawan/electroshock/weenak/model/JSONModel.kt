@@ -46,8 +46,8 @@ data class Content(
     @SerializedName("details")
     val details : Details?,
 
-    @SerializedName("ingredientsLines")
-    val ingredientsLines : Ingredients?
+    @SerializedName("ingredientLines")
+    val ingredientLines : ArrayList<Ingredient>?
 )
 
 data class Videos(
@@ -68,10 +68,10 @@ data class Details(
     val rating : String?
 )
 
-data class Ingredients(
+data class Ingredient(
 
     @SerializedName("wholeLine")
-    val ingredients: String?,
+    val ingredient: String?
 )
 
 data class Web(
@@ -84,5 +84,3 @@ data class Meta_tags(
     @SerializedName("description")
     val description : String?
 )
-
-

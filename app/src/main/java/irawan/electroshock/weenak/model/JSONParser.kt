@@ -27,6 +27,22 @@ class JSONParser {
 
                     if (items != null) {
                         for (i in 0 until items.count()) {
+                            var foodName = items[i].display?.displayName
+                            var foodImage = items[i].display?.images
+                            var foodDescription = items[i].seo?.web?.metaTags?.description
+                            var foodPreparationSteps = items[i].content?.prepartionsSteps
+                            var foodVideos = items[i].content?.videos
+                            var foodTotalTime = items[i].content?.details?.totalTime
+                            var foodNumberOfServings = items[i].content?.details?.numberOfServings
+                            var foodRatings = items[i].content?.details?.rating
+                            var foodIngredient = items[i].content?.ingredientLines
+                            Log.d("Food name ", foodName.toString())
+
+                            if (foodIngredient != null) {
+                                for (j in 0 until foodIngredient.count()){
+
+                                }
+                            }
 
                         }
                     }
