@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class JSONParser {
+    var recipeArray : ArrayList<RecipeModel> = ArrayList()
+    var ingredientsArray : ArrayList<IngredientsModel> = ArrayList()
 
     fun JSONData() {
         val service = RetrofitServiceFactory.createService()
