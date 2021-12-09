@@ -12,5 +12,5 @@ data class RecipeModel(
 )
 
 data class IngredientsModel(
-    var ingredient: String = "N/A"
+    var ingredient : String = "N/A"
 )
