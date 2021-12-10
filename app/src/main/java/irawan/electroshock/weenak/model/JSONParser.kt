@@ -45,24 +45,7 @@ class JSONParser {
                             var foodTotalTime = items[i].content?.details?.totalTime ?: "N/A"
                             var foodNumberOfServings = items[i].content?.details?.numberOfServings ?: "N/A"
                             var foodRatings = items[i].content?.details?.rating ?: "N/A"
-                            var foodIngredient = items[i].content?.ingredientLines
 
-
-                            if (foodIngredient != null) {
-                                for (j in 0 until foodIngredient.count()) {
-                                    var ingredient = foodIngredient[j].ingredient ?: "N/A"
-//                                    Log.d("Number of ingredients ", ingredient?.count().toString())
-//                                    Log.d("Food ingredients ", ingredient.toString())
-//                                    break
-                                    Log.d("Food ", foodName)
-                                    val dataIngredient =
-                                        IngredientsModel(
-                                            ingredient
-                                        )
-                                    ingredientsArray.add(dataIngredient)
-//                                    Log.d("Ingredients Array", ingredientsArray.toString())
-                                }
-                            }
                             val dataRecipe =
                                 RecipeModel(
                                     foodName,
@@ -72,12 +55,31 @@ class JSONParser {
                                     foodVideos,
                                     foodTotalTime,
                                     foodNumberOfServings,
-                                    foodRatings,
-                                    ingredientsArray
+                                    foodRatings
                                 )
                             recipeArray.add(dataRecipe)
-//                            Log.d("Recipe ", recipeArray.toString())
+                            Log.d("Food Name ", foodName.toString())
                         }
+                        Log.d("Recipe ", recipeArray.toString())
+
+
+                        for (j in 0 until items.count()) {
+                            var foodIngredient = items[j].content?.ingredientLines
+                            if (foodIngredient != null) {
+                                for (k in 0 until foodIngredient.count()) {
+                                    var ingredient = foodIngredient[k].ingredient ?: "N/A"
+//                                    Log.d("Number of ingredients ", ingredient?.count().toString())
+//                                    Log.d("Food ingredients ", ingredient)
+                                    val dataIngredient =
+                                        IngredientsModel(
+                                            ingredient
+                                        )
+                                    ingredientsArray.add(dataIngredient)
+
+                                }
+                            }
+                        }
+                        Log.d("Ingredients Array", ingredientsArray.toString())
                     }
                 }
             }
