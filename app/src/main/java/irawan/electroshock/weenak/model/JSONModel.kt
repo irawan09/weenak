@@ -26,7 +26,7 @@ data class Display(
     val displayName : String?,
 
     @SerializedName("images")
-    val images : List<String>?
+    val images : ArrayList<String>?
 )
 
 data class SEOData(
@@ -38,7 +38,7 @@ data class SEOData(
 data class Content(
 
     @SerializedName("preparationSteps")
-    val prepartionsSteps : List<String>?,
+    val prepartionsSteps : ArrayList<String>?,
 
     @SerializedName("videos")
     val videos : Videos?,
