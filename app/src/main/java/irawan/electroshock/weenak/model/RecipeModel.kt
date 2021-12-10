@@ -9,7 +9,7 @@ data class RecipeModel(
     var foodTotalTime: String = "N/A",
     var foodNumberOfServings: String = "N/A",
     var foodRatings: String = "N/A",
-    var ingredients: String = "N/A"
+    var ingredients: ArrayList<IngredientsModel>? = null
 )
 
 data class IngredientsModel(
