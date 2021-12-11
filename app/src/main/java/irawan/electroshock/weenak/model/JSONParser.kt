@@ -11,6 +11,7 @@ import kotlinx.coroutines.withContext
 class JSONParser {
     var recipeArray : ArrayList<RecipeModel> = ArrayList()
     var ingredientsArray : ArrayList<IngredientsModel> = ArrayList()
+    var completeArray : ArrayList<FullRecipe> = ArrayList()
 
     fun puncRemoval(data : String) : String{
         var feedback = data.drop(1)
@@ -52,7 +53,6 @@ class JSONParser {
                                     foodRatings
                                 )
                             recipeArray.add(dataRecipe)
-                            Log.d("Food Name ", recipeArray.toString())
                         }
 
                         for (j in 0 until items.count()) {
@@ -64,13 +64,11 @@ class JSONParser {
                                         IngredientsModel(
                                             ingredient
                                         )
-                                    Log.d("Ingredients Array", ingredientsArray.toString())
                                     ingredientsArray.add(dataIngredient)
-                                    Log.d("Ingredients Array", ingredientsArray.toString())
-
                                 }
                             }
                         }
+
                     }
                 }
             }
