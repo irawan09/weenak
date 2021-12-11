@@ -60,8 +60,6 @@ class JSONParser {
                             if (foodIngredient != null) {
                                 for (k in 0 until foodIngredient.count()) {
                                     var ingredient = foodIngredient[k].ingredient ?: "N/A"
-//                                    Log.d("Number of ingredients ", ingredient?.count().toString())
-//                                    Log.d("Food ingredients ", ingredient)
                                     val dataIngredient =
                                         IngredientsModel(
                                             ingredient
