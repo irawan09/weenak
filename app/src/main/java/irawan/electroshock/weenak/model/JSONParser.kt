@@ -58,10 +58,8 @@ class JSONParser {
                                     foodRatings
                                 )
                             recipeArray.add(dataRecipe)
-                            Log.d("Food Name ", foodName.toString())
+                            Log.d("Food Name ", recipeArray.toString())
                         }
-                        Log.d("Recipe ", recipeArray.toString())
-
 
                         for (j in 0 until items.count()) {
                             var foodIngredient = items[j].content?.ingredientLines
@@ -74,12 +72,13 @@ class JSONParser {
                                         IngredientsModel(
                                             ingredient
                                         )
+                                    Log.d("Ingredients Array", ingredientsArray.toString())
                                     ingredientsArray.add(dataIngredient)
+                                    Log.d("Ingredients Array", ingredientsArray.toString())
 
                                 }
                             }
                         }
-                        Log.d("Ingredients Array", ingredientsArray.toString())
                     }
                 }
             }
