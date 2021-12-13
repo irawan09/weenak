@@ -1,22 +1,14 @@
 package irawan.electroshock.weenak.model
 
 import android.util.Log
-import androidx.activity.ComponentActivity
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
-import irawan.electroshock.weenak.MainActivity
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
-import irawan.electroshock.weenak.view_model.DataViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.collections.ArrayList
 
-class DataRepository : ComponentActivity() {
-    var viewModel: DataViewModel = ViewModelProvider(this).get(DataViewModel::class.java)
-    var post = MutableLiveData<ArrayList<FullRecipe>>()
-
+class DataRepository {
     var recipeArray : ArrayList<RecipeModel> = ArrayList()
     var ingredientsArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
@@ -29,9 +21,6 @@ class DataRepository : ComponentActivity() {
     }
 
     fun JSONData() {
-
-        viewModel = ViewModelProvider(MainActivity()).get(DataViewModel::class.java)
-
         val service = RetrofitServiceFactory.createService()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -89,12 +78,7 @@ class DataRepository : ComponentActivity() {
                                     )
                             completeArray.add(fullRecipe)
                         }
-//                        post.value = completeArray
-//                        Log.d("Data", post.value.toString())
-
-//                        mRequestQueue.add(post)
-
-
+                        Log.d("Complete Recipe", completeArray.toString())
                     } else {
                         Log.e("Retrofit Error", response.code().toString())
                     }
