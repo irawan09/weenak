@@ -1,7 +1,6 @@
 package irawan.electroshock.weenak.model
 
 import android.util.Log
-import irawan.electroshock.weenak.MainActivity
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +9,8 @@ import kotlinx.coroutines.withContext
 
 class JSONParser {
     var recipeArray : ArrayList<RecipeModel> = ArrayList()
-    var ingredientsArray : ArrayList<IngredientsModel> = ArrayList()
+    var ingredientsArray : ArrayList<String> = ArrayList()
+    var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
     var completeArray : ArrayList<FullRecipe> = ArrayList()
 
     fun puncRemoval(data : String) : String{
@@ -27,10 +27,11 @@ class JSONParser {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val items = response.body()?.feed
+                    var foodName:String? = null
 
                     if (items != null) {
                         for (i in 0 until items.count()) {
-                            var foodName = items[i].display?.displayName ?: "N/A"
+                            foodName = items[i].display?.displayName ?: "N/A"
                             var foodImage = items[i].display?.images ?: "N/A"
                             var foodImageNew = puncRemoval(foodImage.toString())
                             var foodDescription = items[i].seo?.web?.metaTags?.description ?: "N/A"
@@ -60,13 +61,18 @@ class JSONParser {
                             if (foodIngredient != null) {
                                 for (k in 0 until foodIngredient.count()) {
                                     var ingredient = foodIngredient[k].ingredient ?: "N/A"
-                                    val dataIngredient =
-                                        IngredientsModel(
-                                            ingredient
-                                        )
-                                    ingredientsArray.add(dataIngredient)
+                                    ingredientsArray.add(ingredient)
                                 }
+                                val fullIngredients =
+                                    FullIngredients(
+                                        ingredientsArray
+                                    )
+                                fullIngredientsArray.add(fullIngredients)
                             }
+                        }
+
+                        for (k in 0 until recipeArray.size){
+//                            Log.d("Data number", recipeArray[k].toString())
                         }
 
                     }

@@ -12,7 +12,11 @@ data class RecipeModel(
 )
 
 data class IngredientsModel(
-    var ingredient : String = "N/A"
+    var ingredient : ArrayList<String>? = null
+)
+
+data class FullIngredients(
+    var fullIngredients: ArrayList<String>? = null
 )
 
 data class FullRecipe(
