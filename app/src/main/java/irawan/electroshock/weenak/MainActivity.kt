@@ -18,11 +18,8 @@ import irawan.electroshock.weenak.ui.theme.WeenakTheme
 
 class MainActivity : ComponentActivity() {
 
-    lateinit var viewModel: RecipeModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContext(this)
         DataRepository().JSONData()
         setContent {
