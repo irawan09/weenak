@@ -13,9 +13,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import irawan.electroshock.weenak.model.DataRepository
+import irawan.electroshock.weenak.model.RecipeModel
 import irawan.electroshock.weenak.ui.theme.WeenakTheme
 
 class MainActivity : ComponentActivity() {
+
+    lateinit var viewModel: RecipeModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

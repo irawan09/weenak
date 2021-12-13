@@ -85,6 +85,8 @@ class DataRepository {
                         Log.d("Data", post.value.toString())
 //                        mRequestQueue.add(post)
 
+                    } else {
+                        Log.e("Retrofit Error", response.code().toString())
                     }
                 }
             }
