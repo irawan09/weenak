@@ -11,10 +11,6 @@ data class RecipeModel(
     var foodRatings: String = "N/A",
 )
 
-data class IngredientsModel(
-    var ingredient : ArrayList<String>? = null
-)
-
 data class FullIngredients(
     var fullIngredients: ArrayList<String>? = null
 )

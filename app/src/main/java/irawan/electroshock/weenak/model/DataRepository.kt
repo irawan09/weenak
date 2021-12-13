@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class JSONParser {
+class DataRepository {
     var recipeArray : ArrayList<RecipeModel> = ArrayList()
     var ingredientsArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
@@ -27,11 +27,9 @@ class JSONParser {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val items = response.body()?.feed
-                    var foodName:String? = null
-
                     if (items != null) {
                         for (i in 0 until items.count()) {
-                            foodName = items[i].display?.displayName ?: "N/A"
+                            var foodName = items[i].display?.displayName ?: "N/A"
                             var foodImage = items[i].display?.images ?: "N/A"
                             var foodImageNew = puncRemoval(foodImage.toString())
                             var foodDescription = items[i].seo?.web?.metaTags?.description ?: "N/A"
