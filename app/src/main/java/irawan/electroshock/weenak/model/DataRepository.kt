@@ -1,13 +1,18 @@
 package irawan.electroshock.weenak.model
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import com.android.volley.RequestQueue
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.collections.ArrayList
 
 class DataRepository {
+    var post = MutableLiveData<ArrayList<FullRecipe>>()
+
     var recipeArray : ArrayList<RecipeModel> = ArrayList()
     var ingredientsArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
@@ -77,6 +82,9 @@ class DataRepository {
                                     )
                             completeArray.add(fullRecipe)
                         }
+                        post.value = completeArray
+                        Log.d("Data", post.value.toString())
+//                        mRequestQueue.add(post)
 
                     }
                 }
