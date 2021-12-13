@@ -2,7 +2,6 @@ package irawan.electroshock.weenak.model
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.android.volley.RequestQueue
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
