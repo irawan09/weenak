@@ -72,7 +72,12 @@ class JSONParser {
                         }
 
                         for (k in 0 until recipeArray.size){
-//                            Log.d("Data number", recipeArray[k].toString())
+                            val fullRecipe =
+                                    FullRecipe (
+                                    recipeArray,
+                                    fullIngredientsArray
+                                    )
+                            completeArray.add(fullRecipe)
                         }
 
                     }

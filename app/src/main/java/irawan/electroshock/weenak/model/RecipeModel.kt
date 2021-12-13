@@ -20,7 +20,7 @@ data class FullIngredients(
 )
 
 data class FullRecipe(
-    var utilityRecipe : ArrayList<RecipeModel>? = null,
-    var ingredients: ArrayList<IngredientsModel>? = null
+    var utilityRecipe: ArrayList<RecipeModel>? = null,
+    var ingredients: ArrayList<FullIngredients>? = null
 
 )
