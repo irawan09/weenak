@@ -1,11 +1,14 @@
 package irawan.electroshock.weenak.model
 
 import com.google.gson.annotations.SerializedName
+import irawan.electroshock.weenak.utils.SetterGetter
+import irawan.electroshock.weenak.utils.SgFoodIngredient
+import org.chromium.base.Log
 
 data class JSONModel(
 
     @SerializedName("feed")
-    val feed: ArrayList<FeedData>? = null,
+    val feed: List<FeedData>? = null,
 )
 
 data class FeedData(
@@ -26,7 +29,7 @@ data class Display(
     val displayName : String?,
 
     @SerializedName("images")
-    val images : ArrayList<String>? = null
+    val images : List<String>?
 )
 
 data class SEOData(
@@ -38,7 +41,7 @@ data class SEOData(
 data class Content(
 
     @SerializedName("preparationSteps")
-    val prepartionsSteps : ArrayList<String>? = null,
+    val prepartionsSteps : List<String>?,
 
     @SerializedName("videos")
     val videos : Videos? = null,
@@ -47,7 +50,7 @@ data class Content(
     val details : Details? = null,
 
     @SerializedName("ingredientLines")
-    val ingredientLines : ArrayList<Ingredient>? = null
+    val ingredientLines : List<Ingredient>? = null
 )
 
 data class Videos(
@@ -83,4 +86,16 @@ data class Web(
 data class Meta_tags(
     @SerializedName("description")
     val description : String?
+)
+
+data class Summary (
+    var dcFoodName : String = "N/A",
+    var dcFoodImage : String = "N/A",
+    var dcFoodDescription : String = "N/A",
+    var dcPreparationSteps : String = "N/A",
+    var dcFoodVideos : String = "N/A",
+    var dcFoodTotalTime : String = "N/A",
+    var dcFoodNumberOfServings : String = "N/A",
+    var dcFoodRatings : String ="N/A",
+    var dcFootIngredients: List<Ingredient>? = null
 )
