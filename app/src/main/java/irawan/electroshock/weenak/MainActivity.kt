@@ -5,15 +5,15 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import irawan.electroshock.weenak.model.DataRepository
-import irawan.electroshock.weenak.model.RecipeModel
+import irawan.electroshock.weenak.model.FullRecipe
 import irawan.electroshock.weenak.ui.theme.WeenakTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,11 +21,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContext(this)
-        DataRepository().JSONData()
+        var data = DataRepository().JSONData()
         setContent {
             WeenakTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Irawan")
+//                    Log.d("data ", data.toString())
+//                    DataCard(data)
                 }
             }
         }
@@ -64,14 +65,15 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name")
+fun DataCard(fullRecipe: FullRecipe) {
+    Log.d("Data ", fullRecipe.toString())
+//    Text(text = "Hello $name")
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     WeenakTheme {
-        Greeting("Android")
+//        DataCard("Android")
     }
 }

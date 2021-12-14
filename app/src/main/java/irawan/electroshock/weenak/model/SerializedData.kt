@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class JSONModel(
 
     @SerializedName("feed")
-    val feed: ArrayList<FeedData>?,
+    val feed: ArrayList<FeedData>? = null,
 )
 
 data class FeedData(
@@ -14,10 +14,10 @@ data class FeedData(
     val display : Display?,
 
     @SerializedName("seo")
-    val seo : SEOData?,
+    val seo : SEOData? = null,
 
     @SerializedName("content")
-    val content : Content?
+    val content : Content? = null
 )
 
 data class Display(
@@ -26,28 +26,28 @@ data class Display(
     val displayName : String?,
 
     @SerializedName("images")
-    val images : ArrayList<String>?
+    val images : ArrayList<String>? = null
 )
 
 data class SEOData(
 
     @SerializedName("web")
-    val web : Web?
+    val web : Web? = null
 )
 
 data class Content(
 
     @SerializedName("preparationSteps")
-    val prepartionsSteps : ArrayList<String>?,
+    val prepartionsSteps : ArrayList<String>? = null,
 
     @SerializedName("videos")
-    val videos : Videos?,
+    val videos : Videos? = null,
 
     @SerializedName("details")
-    val details : Details?,
+    val details : Details? = null,
 
     @SerializedName("ingredientLines")
-    val ingredientLines : ArrayList<Ingredient>?
+    val ingredientLines : ArrayList<Ingredient>? = null
 )
 
 data class Videos(
@@ -77,7 +77,7 @@ data class Ingredient(
 data class Web(
 
     @SerializedName("meta-tags")
-    val metaTags : Meta_tags?
+    val metaTags : Meta_tags? = null
 )
 
 data class Meta_tags(

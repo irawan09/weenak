@@ -70,7 +70,7 @@ class DataRepository {
                             }
                         }
 
-                        for (k in 0 until recipeArray.size){
+                        for (k in 0 until items.count()){
                             val fullRecipe =
                                     FullRecipe (
                                     recipeArray,
@@ -78,7 +78,13 @@ class DataRepository {
                                     )
                             completeArray.add(fullRecipe)
                         }
+                        Log.d("Number of items ", completeArray.size.toString())
                         Log.d("Complete Recipe", completeArray.toString())
+
+                        val data = completeArray[1].utilityRecipe!![11].foodName
+//                        val data = completeArray[1].ingredients
+                        Log.d("data number 11 : ",data.toString())
+
                     } else {
                         Log.e("Retrofit Error", response.code().toString())
                     }
