@@ -2,7 +2,6 @@ package irawan.electroshock.weenak.model
 
 import android.util.Log
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
-import irawan.electroshock.weenak.utils.SetterGetter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -78,8 +77,6 @@ class DataRepository {
                                     fullIngredientsArray
                                     )
                             completeArray.add(fullRecipe)
-
-
                         }
 
                         for (l in 0 until items.count()) {
@@ -87,7 +84,6 @@ class DataRepository {
                             Log.d("data number ${l} : ", data.toString())
                         }
                         Log.d("Complete Recipe", completeArray.toString())
-
 
                     } else {
                         Log.e("Retrofit Error", response.code().toString())
