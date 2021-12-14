@@ -86,9 +86,6 @@ class DataRepository {
                             val data = completeArray[1].utilityRecipe!![l].foodName
                             Log.d("data number ${l} : ", data.toString())
                         }
-
-//                        Log.d("Setter Getter Value", SetterGetter().sgFoodName)
-//                        Log.d("Number of items ", completeArray.size.toString())
                         Log.d("Complete Recipe", completeArray.toString())
 
 
