@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.collections.ArrayList
 
-class DataRepository {
+class RemoteRepository {
     var recipeArray : ArrayList<RecipeModel> = ArrayList()
     var ingredientsArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
@@ -20,7 +20,7 @@ class DataRepository {
         return feedback
     }
 
-    fun JSONData() {
+    fun JSONData() : ArrayList<FullRecipe> {
         val service = RetrofitServiceFactory.createService()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -81,7 +81,7 @@ class DataRepository {
 
                         for (l in 0 until items.count()) {
                             val data = completeArray[1].utilityRecipe!![l].foodName
-                            Log.d("data number ${l} : ", data.toString())
+//                            Log.d("data number ${l} : ", data.toString())
                         }
                         Log.d("Complete Recipe", completeArray.toString())
 
@@ -91,6 +91,6 @@ class DataRepository {
                 }
             }
         }
-
+    return completeArray
     }
 }

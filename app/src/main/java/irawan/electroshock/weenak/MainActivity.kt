@@ -12,7 +12,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import irawan.electroshock.weenak.model.DataRepository
+import irawan.electroshock.weenak.model.RemoteRepository
 import irawan.electroshock.weenak.model.FullRecipe
 import irawan.electroshock.weenak.ui.theme.WeenakTheme
 
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContext(this)
-        var data = DataRepository().JSONData()
+        var data = RemoteRepository().JSONData()
         setContent {
             WeenakTheme {
                 Surface(color = MaterialTheme.colors.background) {
