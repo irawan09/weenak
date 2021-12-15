@@ -35,6 +35,7 @@ class RemoteRepository {
             val response = service.getData()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
+                    Log.d("Response Body",response.body().toString())
                     val items = response.body()?.feed
                     if (items != null) {
                         for (i in 0 until items.count()) {
@@ -94,7 +95,8 @@ class RemoteRepository {
 //                            Log.d("Complete Array length ", completeArray.size.toString())
 //                            Log.d("data number ${l} : ", data)
 //                        }
-                        Log.d("Complete Recipe", recipeResponseLiveData.toString())
+//                        Log.d("Complete Recipe", recipeResponseLiveData.toString())
+//                        Log.d("Complete Recipe", completeArray.toString())
 
                     } else {
                         Log.e("Retrofit Error", response.code().toString())
