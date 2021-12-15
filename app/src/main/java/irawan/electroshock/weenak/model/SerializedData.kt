@@ -4,6 +4,7 @@ import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class JSONModel(
@@ -15,7 +16,7 @@ data class JSONModel(
 data class FeedData(
 
     @SerializedName("display")
-    val display : Display?,
+    val display : Display? = null,
 
     @SerializedName("seo")
     val seo : SEOData? = null,
@@ -27,9 +28,11 @@ data class FeedData(
 data class Display(
 
     @SerializedName("displayName")
+    @Expose
     val displayName : String?,
 
     @SerializedName("images")
+    @Expose
     val images : List<String>?
 )
 
@@ -42,6 +45,7 @@ data class SEOData(
 data class Content(
 
     @SerializedName("preparationSteps")
+    @Expose
     val prepartionsSteps : List<String>?,
 
     @SerializedName("videos")
@@ -57,24 +61,29 @@ data class Content(
 data class Videos(
 
     @SerializedName("originalVideoUrl")
+    @Expose
     val originalVideoUrl : String?
 )
 
 data class Details(
 
     @SerializedName("totalTime")
+    @Expose
     val totalTime : String?,
 
     @SerializedName("numberOfServings")
+    @Expose
     val numberOfServings : String?,
 
     @SerializedName("rating")
+    @Expose
     val rating : String?
 )
 
 data class Ingredient(
 
     @SerializedName("wholeLine")
+    @Expose
     val ingredient: String?
 )
 
@@ -86,6 +95,7 @@ data class Web(
 
 data class Meta_tags(
     @SerializedName("description")
+    @Expose
     val description : String?
 )
 

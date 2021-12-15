@@ -21,7 +21,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContext(this)
-        var data = RemoteRepository().JSONData()
+        var data = RemoteRepository().getRecipeResponseLiveData()
+        Log.d("Remote repository", data.toString())
         setContent {
             WeenakTheme {
                 Surface(color = MaterialTheme.colors.background) {

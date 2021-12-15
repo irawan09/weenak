@@ -1,6 +1,8 @@
 package irawan.electroshock.weenak.model
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,6 +15,12 @@ class RemoteRepository {
     var ingredientsArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
     var completeArray : ArrayList<FullRecipe> = ArrayList()
+    private var recipeResponseLiveData: MutableLiveData<FullRecipe>? = null
+
+    init {
+        recipeResponseLiveData = MutableLiveData<FullRecipe>()
+        JSONData()
+    }
 
     fun puncRemoval(data : String) : String{
         var feedback = data.drop(1)
@@ -20,7 +28,7 @@ class RemoteRepository {
         return feedback
     }
 
-    fun JSONData() : ArrayList<FullRecipe> {
+    fun JSONData() {
         val service = RetrofitServiceFactory.createService()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -77,10 +85,13 @@ class RemoteRepository {
                                     fullIngredientsArray
                                     )
                             completeArray.add(fullRecipe)
+                            recipeResponseLiveData?.postValue(fullRecipe)
+
                         }
 
                         for (l in 0 until items.count()) {
                             val data = completeArray[1].utilityRecipe!![l].foodName
+                            Log.d("Complete Array length ", completeArray.size.toString())
                             Log.d("data number ${l} : ", data.toString())
                         }
                         Log.d("Complete Recipe", completeArray.toString())
@@ -91,6 +102,9 @@ class RemoteRepository {
                 }
             }
         }
-    return completeArray
+    }
+
+    fun getRecipeResponseLiveData() : LiveData<FullRecipe>{
+        return recipeResponseLiveData!!
     }
 }
