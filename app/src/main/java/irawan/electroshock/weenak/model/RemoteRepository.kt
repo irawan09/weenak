@@ -89,12 +89,12 @@ class RemoteRepository {
 
                         }
 
-                        for (l in 0 until items.count()) {
-                            val data = completeArray[1].utilityRecipe!![l].foodName
-                            Log.d("Complete Array length ", completeArray.size.toString())
-                            Log.d("data number ${l} : ", data.toString())
-                        }
-                        Log.d("Complete Recipe", completeArray.toString())
+//                        for (l in 0 until items.count()) {
+//                            val data = completeArray[1].utilityRecipe!![l].foodName
+//                            Log.d("Complete Array length ", completeArray.size.toString())
+//                            Log.d("data number ${l} : ", data)
+//                        }
+                        Log.d("Complete Recipe", recipeResponseLiveData.toString())
 
                     } else {
                         Log.e("Retrofit Error", response.code().toString())
