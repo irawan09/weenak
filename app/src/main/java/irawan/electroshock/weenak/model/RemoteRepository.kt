@@ -81,7 +81,7 @@ class RemoteRepository {
 
                         for (l in 0 until items.count()) {
                             val data = completeArray[1].utilityRecipe!![l].foodName
-//                            Log.d("data number ${l} : ", data.toString())
+                            Log.d("data number ${l} : ", data.toString())
                         }
                         Log.d("Complete Recipe", completeArray.toString())
 
