@@ -2,25 +2,21 @@ package irawan.electroshock.weenak.view_model
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import irawan.electroshock.weenak.model.FullRecipe
-import irawan.electroshock.weenak.model.RemoteRepository
+import irawan.electroshock.weenak.model.*
 
-public class DataViewModel : ViewModel() {
+class DataViewModel : ViewModel() {
     private var remoteRepository : RemoteRepository? = null
-    private var remoteResponseLiveData : LiveData<FullRecipe>? = null
+    private var fullRecipeResponseLiveData : LiveData<FullRecipe>? = null
 
 
     init {
         remoteRepository = RemoteRepository()
-        remoteResponseLiveData = remoteRepository!!.getRecipeResponseLiveData()
+        fullRecipeResponseLiveData = remoteRepository!!.getFullRecipeResponseLiveData()
     }
 
-    fun getRecipeResponseLiveData() : LiveData<FullRecipe>{
-        Log.d("Live Data", remoteResponseLiveData.toString())
-//        remoteResponseLiveData
-        return remoteResponseLiveData!!
+    fun getFullRecipeResponseLiveData() : LiveData<FullRecipe>{
+        return fullRecipeResponseLiveData!!
     }
 
     override fun onCleared() {

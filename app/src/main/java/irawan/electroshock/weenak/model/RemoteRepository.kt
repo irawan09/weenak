@@ -3,6 +3,7 @@ package irawan.electroshock.weenak.model
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import irawan.electroshock.weenak.MainActivity.Companion.puncRemoval
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,18 +16,14 @@ class RemoteRepository {
     var ingredientsArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
     var completeArray : ArrayList<FullRecipe> = ArrayList()
-    private var recipeResponseLiveData: MutableLiveData<FullRecipe>? = null
+    private var fullRecipeResponseLiveData: MutableLiveData<FullRecipe>? = null
 
     init {
-        recipeResponseLiveData = MutableLiveData<FullRecipe>()
+        fullRecipeResponseLiveData = MutableLiveData<FullRecipe>()
         JSONData()
     }
 
-    fun puncRemoval(data : String) : String{
-        var feedback = data.drop(1)
-        feedback = feedback.dropLast(1)
-        return feedback
-    }
+
 
     fun JSONData() {
         val service = RetrofitServiceFactory.createService()
@@ -37,14 +34,15 @@ class RemoteRepository {
                 if (response.isSuccessful) {
 //                    Log.d("Response Body",response.body().toString())
                     val items = response.body()?.feed
+//                    Log.d("Response Body",items.toString())
                     if (items != null) {
                         for (i in 0 until items.count()) {
                             var foodName = items[i].display?.displayName ?: "N/A"
                             var foodImage = items[i].display?.images ?: "N/A"
-                            var foodImageNew = puncRemoval(foodImage.toString())
+                            var foodImageNew = puncRemoval(foodImage.toString(), 1, 1)
                             var foodDescription = items[i].seo?.web?.metaTags?.description ?: "N/A"
                             var foodPreparationSteps = items[i].content?.prepartionsSteps ?: "N/A"
-                            var foodPreparationStepsNew = puncRemoval(foodPreparationSteps.toString())
+                            var foodPreparationStepsNew = puncRemoval(foodPreparationSteps.toString(), 1, 1)
                             var foodVideos = items[i].content?.videos?.originalVideoUrl ?: "N/A"
                             var foodTotalTime = items[i].content?.details?.totalTime ?: "N/A"
                             var foodNumberOfServings = items[i].content?.details?.numberOfServings ?: "N/A"
@@ -86,7 +84,7 @@ class RemoteRepository {
                                     fullIngredientsArray
                                     )
                             completeArray.add(fullRecipe)
-                            recipeResponseLiveData?.postValue(fullRecipe)
+                            fullRecipeResponseLiveData?.postValue(fullRecipe)
 
                         }
 
@@ -106,7 +104,7 @@ class RemoteRepository {
         }
     }
 
-    fun getRecipeResponseLiveData() : LiveData<FullRecipe>{
-        return recipeResponseLiveData!!
+    fun getFullRecipeResponseLiveData() : LiveData<FullRecipe>{
+        return fullRecipeResponseLiveData!!
     }
 }
