@@ -10,7 +10,7 @@ import irawan.electroshock.weenak.model.RemoteRepository
 public class DataViewModel : ViewModel() {
     private var remoteRepository : RemoteRepository? = null
     private var remoteResponseLiveData : LiveData<FullRecipe>? = null
-    private var recipeList = arrayListOf<FullRecipe>()
+
 
     init {
         remoteRepository = RemoteRepository()
@@ -18,7 +18,8 @@ public class DataViewModel : ViewModel() {
     }
 
     fun getRecipeResponseLiveData() : LiveData<FullRecipe>{
-//        remoteResponseLiveData = recipeList
+        Log.d("Live Data", remoteResponseLiveData.toString())
+//        remoteResponseLiveData
         return remoteResponseLiveData!!
     }
 

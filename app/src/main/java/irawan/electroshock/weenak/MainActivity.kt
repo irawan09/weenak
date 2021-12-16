@@ -33,6 +33,7 @@ import java.lang.reflect.Modifier
 class MainActivity : ComponentActivity() {
 
     private lateinit var viewModel : DataViewModel
+    private var recipeList = arrayListOf<FullRecipe>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,9 @@ class MainActivity : ComponentActivity() {
             setContent {
                 WeenakTheme {
                     Surface(color = MaterialTheme.colors.background) {
-                    DataCard(it)
+                        recipeList.add(it)
+                        Log.d("Full Recipe data", recipeList.toString())
+                        DataCard(it)
                     }
                 }
             }
