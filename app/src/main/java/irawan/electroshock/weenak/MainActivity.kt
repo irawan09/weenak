@@ -9,11 +9,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -90,22 +92,27 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
     LazyColumn{
         items(recipeModel!!.size){ index ->
             Column(
-                verticalArrangement = Arrangement.SpaceEvenly,
-                modifier = androidx.compose.ui.Modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
                     .padding(8.dp)
                     .wrapContentSize(Alignment.TopStart)){
+                        Card(elevation = 4.dp, modifier = Modifier.padding(all = 1.dp)){
+
                             var foodName = recipeModel[index].foodName
                             var foodImage = recipeModel[index].foodImage
                             var foodDescription = recipeModel[index].foodDescription
-                            Row(verticalAlignment = Alignment.CenterVertically){
+                            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(all = 1.dp)){
 //                                Image()
-                                Column() {
-                                    Text(text = foodName, fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                                    Text(text = foodDescription, fontSize = 12.sp)
+                                Column(modifier = Modifier.padding(8.dp)) {
+                                    Text(text = foodName, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                    Text(text = foodDescription, fontSize = 10.sp)
                                 }
                             }
+
+                        }
+
+
             }
         }
     }
