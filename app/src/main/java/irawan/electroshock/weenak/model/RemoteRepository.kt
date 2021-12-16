@@ -22,8 +22,6 @@ class RemoteRepository {
         JSONData()
     }
 
-
-
     fun JSONData() {
         val service = RetrofitServiceFactory.createService()
         CoroutineScope(Dispatchers.IO).launch {
