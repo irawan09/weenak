@@ -111,8 +111,6 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
                             }
 
                         }
-
-
             }
         }
     }
