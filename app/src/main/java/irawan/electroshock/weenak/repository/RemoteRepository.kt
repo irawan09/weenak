@@ -1,10 +1,13 @@
-package irawan.electroshock.weenak.model
+package irawan.electroshock.weenak.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import irawan.electroshock.weenak.MainActivity.Companion.puncRemoval
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
+import irawan.electroshock.weenak.model.FullIngredients
+import irawan.electroshock.weenak.model.FullRecipe
+import irawan.electroshock.weenak.model.RecipeModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -5,7 +5,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -20,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import irawan.electroshock.weenak.model.RemoteRepository
 import irawan.electroshock.weenak.model.RecipeModel
 import irawan.electroshock.weenak.ui.theme.WeenakTheme
 import irawan.electroshock.weenak.view_model.DataViewModel
@@ -108,7 +106,6 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
                                     Text(text = foodDescription, fontSize = 12.sp)
                                 }
                             }
-
             }
         }
     }

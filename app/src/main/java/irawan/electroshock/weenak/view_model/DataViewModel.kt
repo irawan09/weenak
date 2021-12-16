@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import irawan.electroshock.weenak.model.*
+import irawan.electroshock.weenak.repository.RemoteRepository
 
 class DataViewModel : ViewModel() {
     private var remoteRepository : RemoteRepository? = null
