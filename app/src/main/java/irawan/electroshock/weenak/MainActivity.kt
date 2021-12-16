@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import irawan.electroshock.weenak.model.RemoteRepository
@@ -103,8 +104,8 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
                             Row(verticalAlignment = Alignment.CenterVertically){
 //                                Image()
                                 Column() {
-                                    Text(text = foodName, fontWeight = FontWeight.Bold)
-                                    Text(text = foodDescription)
+                                    Text(text = foodName, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                                    Text(text = foodDescription, fontSize = 12.sp)
                                 }
                             }
 
