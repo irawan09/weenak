@@ -5,26 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import irawan.electroshock.weenak.model.FullRecipe
+import irawan.electroshock.weenak.model.RemoteRepository
 
-class DataViewModel : ViewModel() {
-
-    private val _data = MutableLiveData<Collection<FullRecipe>>()
-    val data : LiveData<Collection<FullRecipe>> = _data
-
-    var newList = arrayListOf<FullRecipe>()
+public class DataViewModel : ViewModel() {
+    private var remoteRepository : RemoteRepository? = null
+    private var remoteResponseLiveData : LiveData<FullRecipe>? = null
+    private var recipeList = arrayListOf<FullRecipe>()
 
     init {
-        _data.postValue(emptyList())
+        remoteRepository = RemoteRepository()
+        remoteResponseLiveData = remoteRepository!!.getRecipeResponseLiveData()
     }
 
-    fun add(fullRecipe : FullRecipe){
-        newList.add(fullRecipe)
-        _data.value = newList
-        Log.d("Data View Model", _data.value.toString())
-    }
-
-    fun getData(): ArrayList<FullRecipe> {
-        return newList
+    fun getRecipeResponseLiveData() : LiveData<FullRecipe>{
+//        remoteResponseLiveData = recipeList
+        return remoteResponseLiveData!!
     }
 
     override fun onCleared() {

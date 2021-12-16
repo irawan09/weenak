@@ -35,7 +35,7 @@ class RemoteRepository {
             val response = service.getData()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    Log.d("Response Body",response.body().toString())
+//                    Log.d("Response Body",response.body().toString())
                     val items = response.body()?.feed
                     if (items != null) {
                         for (i in 0 until items.count()) {
