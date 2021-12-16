@@ -97,10 +97,9 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
                     .fillMaxHeight()
                     .padding(8.dp)
                     .wrapContentSize(Alignment.TopStart)){
-                        for (i in 0 until recipeModel.count()){
-                            var foodName = recipeModel[i].foodName
-                            var foodImage = recipeModel[i].foodImage
-                            var foodDescription = recipeModel[i].foodDescription
+                            var foodName = recipeModel[index].foodName
+                            var foodImage = recipeModel[index].foodImage
+                            var foodDescription = recipeModel[index].foodDescription
                             Row(verticalAlignment = Alignment.CenterVertically){
 //                                Image()
                                 Column() {
@@ -108,7 +107,7 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
                                     Text(text = foodDescription)
                                 }
                             }
-                        }
+
             }
         }
     }
