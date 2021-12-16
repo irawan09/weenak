@@ -15,7 +15,6 @@ class RemoteRepository {
     var recipeArray : ArrayList<RecipeModel> = ArrayList()
     var ingredientsArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
-    var completeArray : ArrayList<FullRecipe> = ArrayList()
     private var fullRecipeResponseLiveData: MutableLiveData<FullRecipe>? = null
 
     init {
@@ -27,14 +26,11 @@ class RemoteRepository {
 
     fun JSONData() {
         val service = RetrofitServiceFactory.createService()
-
         CoroutineScope(Dispatchers.IO).launch {
             val response = service.getData()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-//                    Log.d("Response Body",response.body().toString())
                     val items = response.body()?.feed
-//                    Log.d("Response Body",items.toString())
                     if (items != null) {
                         for (i in 0 until items.count()) {
                             var foodName = items[i].display?.displayName ?: "N/A"
@@ -83,19 +79,9 @@ class RemoteRepository {
                                     recipeArray,
                                     fullIngredientsArray
                                     )
-                            completeArray.add(fullRecipe)
                             fullRecipeResponseLiveData?.postValue(fullRecipe)
 
                         }
-
-//                        for (l in 0 until items.count()) {
-//                            val data = completeArray[1].utilityRecipe!![l].foodName
-//                            Log.d("Complete Array length ", completeArray.size.toString())
-//                            Log.d("data number ${l} : ", data)
-//                        }
-//                        Log.d("Complete Recipe", recipeResponseLiveData.toString())
-//                        Log.d("Complete Recipe", completeArray.toString())
-
                     } else {
                         Log.e("Retrofit Error", response.code().toString())
                     }
