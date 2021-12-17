@@ -10,7 +10,6 @@ class DataViewModel : ViewModel() {
     private var remoteRepository : RemoteRepository? = null
     private var fullRecipeResponseLiveData : LiveData<FullRecipe>? = null
 
-
     init {
         remoteRepository = RemoteRepository()
         fullRecipeResponseLiveData = remoteRepository!!.getFullRecipeResponseLiveData()
