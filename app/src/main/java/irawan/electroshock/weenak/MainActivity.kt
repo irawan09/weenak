@@ -99,29 +99,30 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
-                    .padding(4.dp)
+                    .padding(2.dp)
                     .wrapContentSize(Alignment.TopStart)
             ) {
                 Card(elevation = 4.dp, modifier = Modifier
                     .fillMaxWidth()
-                    .padding(all = 1.dp)
+                    .padding(all = 4.dp)
                     .clickable { }) {
 
                     var foodName = recipeModel[index].foodName
                     var foodImage = recipeModel[index].foodImage
                     foodImage =
-                        "https://w7.pngwing.com/pngs/658/11/png-transparent-zombie-face-graffiti-icon-graffiti-comics-fictional-character-graffiti-border.png"
+                        "https://ih1.redbubble.net/image.620404389.8843/st,small,507x507-pad,600x600,f8f8f8.u1.jpg"
                     var foodDescription = recipeModel[index].foodDescription
                     var foodVideos = recipeModel[index].foodVideos
                     Log.d("Videos", foodVideos)
                     Column(
-                        modifier = Modifier.padding(all = 1.dp),
+                        modifier = Modifier.padding(all = 4.dp),
                         horizontalAlignment = Alignment.CenterHorizontally) {
                         Column(
                             modifier = Modifier.padding(all = 1.dp)) {
                             Box(
                                 modifier = Modifier
-                                    .size(100.dp), contentAlignment = Alignment.Center) {
+                                    .size(150.dp)
+                                    .padding(4.dp)) {
                                 val painter = rememberImagePainter(data = foodImage, builder = {})
                                 Image(
                                     painter = painter,
@@ -132,8 +133,10 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
                                 )
                             }
                         }
-                        Column(modifier = Modifier.padding(2.dp)) {
-                                Text(text = foodName, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        Column(modifier = Modifier
+                            .padding(2.dp)
+                            .fillMaxWidth()) {
+                                Text(text = foodName, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(2.dp))
                                 Text(text = foodDescription, fontSize = 10.sp)
                         }
                     }
