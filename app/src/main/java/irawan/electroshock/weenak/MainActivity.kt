@@ -93,46 +93,52 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DataCard(recipeModel: List<RecipeModel>?) {
-    LazyColumn{
-        items(recipeModel!!.size){ index ->
+    LazyColumn {
+        items(recipeModel!!.size) { index ->
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
                     .padding(4.dp)
-                    .wrapContentSize(Alignment.TopStart)){
-                        Card(elevation = 4.dp, modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 1.dp)
-                            .clickable { }){
+                    .wrapContentSize(Alignment.TopStart)
+            ) {
+                Card(elevation = 4.dp, modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(all = 1.dp)
+                    .clickable { }) {
 
-                            var foodName = recipeModel[index].foodName
-                            var foodImage = recipeModel[index].foodImage
-                            var foodDescription = recipeModel[index].foodDescription
-                            Column( modifier = Modifier.padding(all = 1.dp)){
-                                Box(modifier = Modifier
-                                    .fillMaxWidth()
-                                    .fillMaxHeight(), contentAlignment = Alignment.Center){
-                                    val painter = rememberImagePainter(data = foodImage, builder = {})
-                                    Image(
-                                        painter = painter,
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .fillMaxHeight()
-                                            .fillMaxWidth())
-                                }
-
-
-
-                                Column(modifier = Modifier.padding(2.dp)) {
-                                    Text(text = foodName, fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                                    Text(text = foodDescription, fontSize = 10.sp)
-                                }
+                    var foodName = recipeModel[index].foodName
+                    var foodImage = recipeModel[index].foodImage
+                    foodImage =
+                        "https://w7.pngwing.com/pngs/658/11/png-transparent-zombie-face-graffiti-icon-graffiti-comics-fictional-character-graffiti-border.png"
+                    var foodDescription = recipeModel[index].foodDescription
+                    var foodVideos = recipeModel[index].foodVideos
+                    Log.d("Videos", foodVideos)
+                    Column(
+                        modifier = Modifier.padding(all = 1.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally) {
+                        Column(
+                            modifier = Modifier.padding(all = 1.dp)) {
+                            Box(
+                                modifier = Modifier
+                                    .size(100.dp), contentAlignment = Alignment.Center) {
+                                val painter = rememberImagePainter(data = foodImage, builder = {})
+                                Image(
+                                    painter = painter,
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .fillMaxHeight()
+                                        .fillMaxWidth()
+                                )
                             }
-
                         }
+                        Column(modifier = Modifier.padding(2.dp)) {
+                                Text(text = foodName, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                Text(text = foodDescription, fontSize = 10.sp)
+                        }
+                    }
+                }
             }
         }
     }
-
- }
+}
