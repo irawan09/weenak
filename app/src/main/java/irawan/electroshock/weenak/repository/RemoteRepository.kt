@@ -8,6 +8,7 @@ import irawan.electroshock.weenak.api.RetrofitServiceFactory
 import irawan.electroshock.weenak.model.FullIngredients
 import irawan.electroshock.weenak.model.FullRecipe
 import irawan.electroshock.weenak.model.RecipeModel
+import irawan.electroshock.weenak.model.Summary
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,6 +20,8 @@ class RemoteRepository {
     var ingredientsArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
     private var fullRecipeResponseLiveData: MutableLiveData<FullRecipe>? = null
+
+    var summary = Summary()
 
     init {
         fullRecipeResponseLiveData = MutableLiveData<FullRecipe>()
