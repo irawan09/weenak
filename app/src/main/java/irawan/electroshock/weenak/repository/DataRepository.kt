@@ -1,27 +1,25 @@
 package irawan.electroshock.weenak.repository
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import irawan.electroshock.weenak.MainActivity.Companion.puncRemoval
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
 import irawan.electroshock.weenak.model.FullIngredients
 import irawan.electroshock.weenak.model.FullRecipe
 import irawan.electroshock.weenak.model.RecipeModel
-import irawan.electroshock.weenak.model.Summary
+import irawan.electroshock.weenak.model.DatabaseModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.collections.ArrayList
 
-class RemoteRepository {
+class DataRepository {
     var recipeArray : ArrayList<RecipeModel> = ArrayList()
-    var ingredientsArray : ArrayList<String> = ArrayList()
+    var ingredientArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
     private var fullRecipeResponseLiveData: MutableLiveData<FullRecipe>? = null
-
-    var summary = Summary()
+    private var databaseFullRecipeLivedata: MutableLiveData<DatabaseModel>? =null
 
     init {
         fullRecipeResponseLiveData = MutableLiveData<FullRecipe>()
@@ -67,11 +65,11 @@ class RemoteRepository {
                             if (foodIngredient != null) {
                                 for (k in 0 until foodIngredient.count()) {
                                     var ingredient = foodIngredient[k].ingredient ?: "N/A"
-                                    ingredientsArray.add(ingredient)
+                                    ingredientArray.add(ingredient)
                                 }
                                 val fullIngredients =
                                     FullIngredients(
-                                        ingredientsArray
+                                        ingredientArray
                                     )
                                 fullIngredientsArray.add(fullIngredients)
                             }
@@ -86,6 +84,34 @@ class RemoteRepository {
                             fullRecipeResponseLiveData?.postValue(fullRecipe)
 
                         }
+
+                        for (l in 0 until items.count()){
+                            val foodName = recipeArray[l].foodName
+                            val foodImage = recipeArray[l].foodImage
+                            val foodDescription = recipeArray[l].foodDescription
+                            val foodPreparation = recipeArray[l].foodPreparationSteps
+                            val foodVideo = recipeArray[l].foodVideos
+                            val foodTotalTime = recipeArray[l].foodTotalTime
+                            val foodNumberOfServings = recipeArray[l].foodNumberOfServings
+                            val foodRating = recipeArray[l].foodRatings
+                            val foodIngredients = fullIngredientsArray[l].fullIngredients.toString()
+                            Log.d("food ingredients", foodIngredients)
+
+                            val database =
+                                DatabaseModel(
+                                    foodName,
+                                    foodImage,
+                                    foodDescription,
+                                    foodPreparation,
+                                    foodVideo,
+                                    foodTotalTime,
+                                    foodNumberOfServings,
+                                    foodRating,
+                                    foodIngredients
+                                )
+                            databaseFullRecipeLivedata!!.postValue(database)
+                        }
+
                     } else {
                         Log.e("Retrofit Error", response.code().toString())
                     }
@@ -96,5 +122,9 @@ class RemoteRepository {
 
     fun getFullRecipeResponseLiveData() : MutableLiveData<FullRecipe>{
         return fullRecipeResponseLiveData!!
+    }
+
+    fun getDatabaseFullRecipeLivedata() : MutableLiveData<DatabaseModel>{
+        return databaseFullRecipeLivedata!!
     }
 }

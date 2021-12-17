@@ -100,7 +100,7 @@ data class Meta_tags(
 )
 
 @Entity(tableName = "recipe_table")
-data class Summary (
+data class DatabaseModel (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "name")
     @NonNull
@@ -124,5 +124,5 @@ data class Summary (
     var dcFoodRatings : String ="N/A",
     @ColumnInfo(name = "ingredients")
     @NonNull
-    var dcFootIngredients: String? = null
+    var dcFootIngredients: String? = "N/A"
 )
