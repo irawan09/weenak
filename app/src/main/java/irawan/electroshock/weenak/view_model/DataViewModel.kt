@@ -2,13 +2,14 @@ package irawan.electroshock.weenak.view_model
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import irawan.electroshock.weenak.model.*
 import irawan.electroshock.weenak.repository.RemoteRepository
 
 class DataViewModel : ViewModel() {
     private var remoteRepository : RemoteRepository? = null
-    private var fullRecipeResponseLiveData : LiveData<FullRecipe>? = null
+    private var fullRecipeResponseLiveData : MutableLiveData<FullRecipe>? = null
 
     init {
         remoteRepository = RemoteRepository()

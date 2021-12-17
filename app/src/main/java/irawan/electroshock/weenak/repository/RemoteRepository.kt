@@ -94,7 +94,7 @@ class RemoteRepository {
         }
     }
 
-    fun getFullRecipeResponseLiveData() : LiveData<FullRecipe>{
+    fun getFullRecipeResponseLiveData() : MutableLiveData<FullRecipe>{
         return fullRecipeResponseLiveData!!
     }
 }
