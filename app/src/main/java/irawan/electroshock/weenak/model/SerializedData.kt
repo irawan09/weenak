@@ -124,5 +124,5 @@ data class Summary (
     var dcFoodRatings : String ="N/A",
     @ColumnInfo(name = "ingredients")
     @NonNull
-    var dcFootIngredients: List<String>? = null
+    var dcFootIngredients: String? = null
 )
