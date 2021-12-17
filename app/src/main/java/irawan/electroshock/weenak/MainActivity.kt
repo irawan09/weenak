@@ -108,7 +108,6 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
 
                             var foodName = recipeModel[index].foodName
                             var foodImage = recipeModel[index].foodImage
-                            Log.d("data Image", foodImage)
                             var foodDescription = recipeModel[index].foodDescription
                             Column( modifier = Modifier.padding(all = 1.dp)){
                                 Box(modifier = Modifier
