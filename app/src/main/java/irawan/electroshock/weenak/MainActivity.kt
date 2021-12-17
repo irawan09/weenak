@@ -136,7 +136,7 @@ fun DataCard(recipeModel: List<RecipeModel>?) {
                         Column(modifier = Modifier
                             .padding(2.dp)
                             .fillMaxWidth()) {
-                                Text(text = foodName, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(2.dp))
+                                Text(text = foodName, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 4.dp))
                                 Text(text = foodDescription, fontSize = 10.sp)
                         }
                     }
