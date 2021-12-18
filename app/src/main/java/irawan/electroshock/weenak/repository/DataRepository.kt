@@ -1,9 +1,11 @@
 package irawan.electroshock.weenak.repository
 
 import android.util.Log
+import androidx.annotation.WorkerThread
 import androidx.lifecycle.MutableLiveData
 import irawan.electroshock.weenak.MainActivity.Companion.puncRemoval
 import irawan.electroshock.weenak.api.RetrofitServiceFactory
+import irawan.electroshock.weenak.database.RecipeDao
 import irawan.electroshock.weenak.model.FullIngredients
 import irawan.electroshock.weenak.model.FullRecipe
 import irawan.electroshock.weenak.model.RecipeModel
@@ -14,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.collections.ArrayList
 
-class DataRepository {
+class DataRepository(private val recipeDao : RecipeDao) {
     var recipeArray : ArrayList<RecipeModel> = ArrayList()
     var ingredientArray : ArrayList<String> = ArrayList()
     var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
@@ -127,5 +129,11 @@ class DataRepository {
 
     fun getDatabaseFullRecipeLivedata() : MutableLiveData<DatabaseModel>{
         return databaseFullRecipeLivedata!!
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun  insert(databaseModel: DatabaseModel){
+        recipeDao.inserData(databaseModel)
     }
 }
