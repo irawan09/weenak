@@ -19,6 +19,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,6 +29,7 @@ import coil.compose.rememberImagePainter
 import irawan.electroshock.weenak.model.Ingredient
 import irawan.electroshock.weenak.model.RecipeModel
 import irawan.electroshock.weenak.ui.theme.WeenakTheme
+import irawan.electroshock.weenak.view.DataCard
 import irawan.electroshock.weenak.view_model.DataViewModel
 
 class MainActivity : ComponentActivity() {
@@ -43,7 +45,7 @@ class MainActivity : ComponentActivity() {
                 WeenakTheme {
                     Surface(color = MaterialTheme.colors.background) {
                         var utility = it.utilityRecipe
-                        var ingredients = it.ingredients
+//                        var ingredients = it.ingredients
 //                        ingredients?.toList()
 //                        Log.d("Utility Data ", utility?.toList().toString())
 //                        Log.d("Jumlah Utility data ", utility?.toList()?.size.toString())
@@ -51,6 +53,10 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
+        })
+
+        viewModel.getDatabaseRecipeResponseLiveData().observe(this,{
+                Log.d("Database", it.dcFoodName)
         })
     }
 
@@ -92,61 +98,6 @@ class MainActivity : ComponentActivity() {
             } else {
                 val nwInfo = connectivityManager.activeNetworkInfo ?: return false
                 return nwInfo.isConnected
-            }
-        }
-    }
-}
-
-@Composable
-fun DataCard(recipeModel: List<RecipeModel>?) {
-    LazyColumn {
-        items(recipeModel!!.size) { index ->
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .padding(2.dp)
-                    .wrapContentSize(Alignment.TopStart)
-            ) {
-                Card(elevation = 4.dp, modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(all = 4.dp)
-                    .clickable { }) {
-
-                    var foodName = recipeModel[index].foodName
-                    var foodImage = recipeModel[index].foodImage
-                    foodImage =
-                        "https://ih1.redbubble.net/image.620404389.8843/st,small,507x507-pad,600x600,f8f8f8.u1.jpg"
-                    var foodDescription = recipeModel[index].foodDescription
-                    var foodVideos = recipeModel[index].foodVideos
-//                    Log.d("Videos", foodVideos)
-                    Column(
-                        modifier = Modifier.padding(all = 4.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally) {
-                        Column(
-                            modifier = Modifier.padding(all = 1.dp)) {
-                            Box(
-                                modifier = Modifier
-                                    .size(150.dp)
-                                    .padding(4.dp)) {
-                                val painter = rememberImagePainter(data = foodImage, builder = {})
-                                Image(
-                                    painter = painter,
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .fillMaxHeight()
-                                        .fillMaxWidth()
-                                )
-                            }
-                        }
-                        Column(modifier = Modifier
-                            .padding(2.dp)
-                            .fillMaxWidth()) {
-                                Text(text = foodName, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 4.dp))
-                                Text(text = foodDescription, fontSize = 10.sp)
-                        }
-                    }
-                }
             }
         }
     }

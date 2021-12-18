@@ -23,6 +23,7 @@ class DataRepository {
 
     init {
         fullRecipeResponseLiveData = MutableLiveData<FullRecipe>()
+        databaseFullRecipeLivedata = MutableLiveData<DatabaseModel>()
         JSONData()
     }
 
@@ -95,7 +96,7 @@ class DataRepository {
                             val foodNumberOfServings = recipeArray[l].foodNumberOfServings
                             val foodRating = recipeArray[l].foodRatings
                             val foodIngredients = fullIngredientsArray[l].fullIngredients.toString()
-                            Log.d("food ingredients", foodIngredients)
+//                            Log.d("food ingredients", foodIngredients)
 
                             val database =
                                 DatabaseModel(
