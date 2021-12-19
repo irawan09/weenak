@@ -17,9 +17,10 @@ import kotlinx.coroutines.withContext
 import kotlin.collections.ArrayList
 
 class DataRepository(private val recipeDao : RecipeDao) {
-    var recipeArray : ArrayList<RecipeModel> = ArrayList()
-    var ingredientArray : ArrayList<String> = ArrayList()
-    var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
+    private val LOG = "Observer Data "
+    private var recipeArray : ArrayList<RecipeModel> = ArrayList()
+    private var ingredientArray : ArrayList<String> = ArrayList()
+    private var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
     private var fullRecipeResponseLiveData: MutableLiveData<FullRecipe>? = null
     private var databaseFullRecipeLivedata: MutableLiveData<DatabaseModel>? =null
 
@@ -98,7 +99,7 @@ class DataRepository(private val recipeDao : RecipeDao) {
                             val foodNumberOfServings = recipeArray[l].foodNumberOfServings
                             val foodRating = recipeArray[l].foodRatings
                             val foodIngredients = fullIngredientsArray[l].fullIngredients.toString()
-//                            Log.d("food ingredients", foodIngredients)
+//                            Log.d(LOG, foodIngredients)
 
                             val database =
                                 DatabaseModel(
