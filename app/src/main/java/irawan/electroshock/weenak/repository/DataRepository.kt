@@ -27,10 +27,10 @@ class DataRepository(private val recipeDao : RecipeDao) {
     init {
         fullRecipeResponseLiveData = MutableLiveData<FullRecipe>()
         databaseFullRecipeLivedata = MutableLiveData<DatabaseModel>()
-        JSONData()
+        jsonData()
     }
 
-    fun JSONData() {
+    fun jsonData() {
         val service = RetrofitServiceFactory.createService()
         CoroutineScope(Dispatchers.IO).launch {
             val response = service.getData()
