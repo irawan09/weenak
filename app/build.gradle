@@ -73,7 +73,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.8'
 
     implementation "io.coil-kt:coil-compose:$rootProject.coil"
-    implementation "com.github.skydoves:landscapist-glide::$rootProject.glide"
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle_version"
