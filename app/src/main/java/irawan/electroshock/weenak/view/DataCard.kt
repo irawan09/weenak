@@ -23,7 +23,7 @@ LazyColumn {
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
-                .padding(2.dp)
+                .padding(vertical = 4.dp)
                 .wrapContentSize(Alignment.TopStart)) {
                     Card(elevation = 4.dp, modifier = Modifier
                         .fillMaxWidth()
