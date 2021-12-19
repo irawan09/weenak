@@ -35,8 +35,6 @@ LazyColumn {
                         foodImage =
                             "https://ih1.redbubble.net/image.620404389.8843/st,small,507x507-pad,600x600,f8f8f8.u1.jpg"
                         var foodDescription = recipeModel[index].foodDescription
-                        var foodVideos = recipeModel[index].foodVideos
-//                    Log.d("Videos", foodVideos)
                         Column(
                             modifier = Modifier.padding(all = 4.dp),
                             horizontalAlignment = Alignment.CenterHorizontally) {
