@@ -39,16 +39,16 @@ class DataRepository(private val recipeDao : RecipeDao) {
                     val items = response.body()?.feed
                     if (items != null) {
                         for (i in 0 until items.count()) {
-                            var foodName = items[i].display?.displayName ?: "N/A"
-                            var foodImage = items[i].display?.images ?: "N/A"
-                            var foodImageNew = puncRemoval(foodImage.toString(), 1, 1)
-                            var foodDescription = items[i].seo?.web?.metaTags?.description ?: "N/A"
-                            var foodPreparationSteps = items[i].content?.prepartionsSteps ?: "N/A"
-                            var foodPreparationStepsNew = puncRemoval(foodPreparationSteps.toString(), 1, 1)
-                            var foodVideos = items[i].content?.videos?.originalVideoUrl ?: "N/A"
-                            var foodTotalTime = items[i].content?.details?.totalTime ?: "N/A"
-                            var foodNumberOfServings = items[i].content?.details?.numberOfServings ?: "N/A"
-                            var foodRatings = items[i].content?.details?.rating ?: "N/A"
+                            val foodName = items[i].display?.displayName ?: "N/A"
+                            val foodImage = items[i].display?.images ?: "N/A"
+                            val foodImageNew = puncRemoval(foodImage.toString(), 1, 1)
+                            val foodDescription = items[i].seo?.web?.metaTags?.description ?: "N/A"
+                            val foodPreparationSteps = items[i].content?.prepartionsSteps ?: "N/A"
+                            val foodPreparationStepsNew = puncRemoval(foodPreparationSteps.toString(), 1, 1)
+                            val foodVideos = items[i].content?.videos?.originalVideoUrl ?: "N/A"
+                            val foodTotalTime = items[i].content?.details?.totalTime ?: "N/A"
+                            val foodNumberOfServings = items[i].content?.details?.numberOfServings ?: "N/A"
+                            val foodRatings = items[i].content?.details?.rating ?: "N/A"
 
                             val dataRecipe =
                                 RecipeModel(
