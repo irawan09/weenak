@@ -15,7 +15,7 @@ interface RecipeDao {
     fun getAllRecipe(): LiveData<List<DatabaseModel>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun inserData(databaseModel: DatabaseModel){
+    fun insertData(databaseModel: DatabaseModel){
         Log.d("Database ", databaseModel.dcFoodName)
     }
 

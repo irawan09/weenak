@@ -135,6 +135,6 @@ class DataRepository(private val recipeDao : RecipeDao) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun  insert(databaseModel: DatabaseModel){
-        recipeDao.inserData(databaseModel)
+        recipeDao.insertData(databaseModel)
     }
 }
