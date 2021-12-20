@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.collections.ArrayList
 
-class DataRepository(private val recipeDao : RecipeDao) {
+class DataRepository(/*private val recipeDao : RecipeDao*/) {
     private val LOG = "Observer Data "
     private var recipeArray : ArrayList<RecipeModel> = ArrayList()
     private var ingredientArray : ArrayList<String> = ArrayList()
@@ -132,9 +132,9 @@ class DataRepository(private val recipeDao : RecipeDao) {
         return databaseFullRecipeLivedata!!
     }
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun  insert(databaseModel: DatabaseModel){
-        recipeDao.insertData(databaseModel)
-    }
+//    @Suppress("RedundantSuspendModifier")
+//    @WorkerThread
+//    suspend fun  insert(databaseModel: DatabaseModel){
+//        recipeDao.insertData(databaseModel)
+//    }
 }

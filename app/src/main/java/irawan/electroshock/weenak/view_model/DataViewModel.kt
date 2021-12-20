@@ -15,7 +15,7 @@ class DataViewModel : ViewModel() {
     private var databaseResponseLiveData : MutableLiveData<DatabaseModel>? = null
 
     init {
-        dataRepository = DataRepository(recipeDao = recipeDao!!)
+        dataRepository = DataRepository(/*recipeDao = recipeDao!!*/)
         fullRecipeResponseLiveData = dataRepository!!.getFullRecipeResponseLiveData()
         databaseResponseLiveData = dataRepository!!.getDatabaseFullRecipeLivedata()
     }
