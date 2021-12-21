@@ -1,22 +1,17 @@
 package irawan.electroshock.weenak.database
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.google.gson.Gson
-import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
-import irawan.electroshock.weenak.MainActivity
-import irawan.electroshock.weenak.R
 import irawan.electroshock.weenak.model.DatabaseModel
-import irawan.electroshock.weenak.repository.DataRepository
+import irawan.electroshock.weenak.repository.RemoteRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.InputStream
 
 @Database(entities = [DatabaseModel::class], version = 15, exportSchema = false)
 abstract class RecipeRoomDatabase : RoomDatabase() {
@@ -53,7 +48,7 @@ abstract class RecipeRoomDatabase : RoomDatabase() {
                 // comment out the following line.
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
-                        val jsonObj = DataRepository().getDatabaseFullRecipeLivedata()
+                        val jsonObj = RemoteRepository().getDatabaseFullRecipeLivedata()
                         val jsonObjNew = Gson().toJson(jsonObj)
                         val recipeType = object : TypeToken<DatabaseModel>() {}.type
                          val recipe: DatabaseModel = Gson().fromJson(jsonObjNew, recipeType)

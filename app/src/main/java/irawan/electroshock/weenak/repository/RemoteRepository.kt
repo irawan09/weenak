@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.collections.ArrayList
 
-class DataRepository(/*private val recipeDao : RecipeDao*/) {
+class RemoteRepository(/*private val recipeDao : RecipeDao*/) {
     private val LOG = "Observer Data "
     private var recipeArray : ArrayList<RecipeModel> = ArrayList()
     private var ingredientArray : ArrayList<String> = ArrayList()
