@@ -28,9 +28,7 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
             Log.d("Database", it.toString())
         })
 
-
         db = Room.databaseBuilder(MainActivity.getContext(), RecipeRoomDatabase::class.java,"recipe-db").build()
-
     }
 
     fun getFullRecipeResponseLiveData() : LiveData<FullRecipe>{
