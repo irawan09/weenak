@@ -91,7 +91,6 @@ class RemoteRepository() {
                         }
 
                         for (l in 0 until items.count()){
-
                             recipeArray[l].let {
                                 val foodName = it.foodName
                                 val foodImage = it.foodImage
