@@ -3,7 +3,9 @@ package irawan.electroshock.weenak.view_model
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.room.Room
 import androidx.room.RoomDatabase
+import irawan.electroshock.weenak.MainActivity
 import irawan.electroshock.weenak.database.RecipeDao
 import irawan.electroshock.weenak.database.RecipeRoomDatabase
 import irawan.electroshock.weenak.model.*
@@ -11,6 +13,7 @@ import irawan.electroshock.weenak.repository.DatabaseRepository
 import irawan.electroshock.weenak.repository.RemoteRepository
 
 class DataViewModel(application: Application) : AndroidViewModel(application) {
+    private var db : RecipeRoomDatabase? = null
     private var remoteRepository : RemoteRepository? = null
     private var fullRecipeResponseLiveData : MutableLiveData<FullRecipe>? = null
     private var databaseResponseLiveData : MutableLiveData<DatabaseModel>? = null
@@ -21,6 +24,8 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
             fullRecipeResponseLiveData = it?.getFullRecipeResponseLiveData()
             databaseResponseLiveData = it?.getDatabaseFullRecipeLivedata()
         }
+
+        db = Room.databaseBuilder(MainActivity.getContext(), RecipeRoomDatabase::class.java,"recipe-db").build()
 
     }
 
