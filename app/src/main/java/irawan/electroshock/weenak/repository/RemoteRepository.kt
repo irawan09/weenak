@@ -17,7 +17,6 @@ import kotlinx.coroutines.withContext
 import kotlin.collections.ArrayList
 
 class RemoteRepository() {
-    private val LOG = "Observer Data "
     private var recipeArray : ArrayList<RecipeModel> = ArrayList()
     private var ingredientArray : ArrayList<String> = ArrayList()
     private var fullIngredientsArray : ArrayList<FullIngredients> = ArrayList()
@@ -99,7 +98,6 @@ class RemoteRepository() {
                             val foodNumberOfServings = recipeArray[l].foodNumberOfServings
                             val foodRating = recipeArray[l].foodRatings
                             val foodIngredients = fullIngredientsArray[l].fullIngredients.toString()
-//                            Log.d(LOG, foodIngredients)
 
                             val database =
                                 DatabaseModel(
