@@ -17,9 +17,10 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         remoteRepository = RemoteRepository()
-        fullRecipeResponseLiveData = remoteRepository!!.getFullRecipeResponseLiveData()
-        databaseResponseLiveData = remoteRepository!!.getDatabaseFullRecipeLivedata()
-
+        remoteRepository.let {
+            fullRecipeResponseLiveData = it?.getFullRecipeResponseLiveData()
+            databaseResponseLiveData = it?.getDatabaseFullRecipeLivedata()
+        }
 
     }
 

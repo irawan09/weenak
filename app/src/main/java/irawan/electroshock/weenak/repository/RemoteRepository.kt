@@ -38,29 +38,31 @@ class RemoteRepository() {
                     val items = response.body()?.feed
                     if (items != null) {
                         for (i in 0 until items.count()) {
-                            val foodName = items[i].display?.displayName ?: "N/A"
-                            val foodImage = items[i].display?.images ?: "N/A"
-                            val foodImageNew = puncRemoval(foodImage.toString(), 1, 1)
-                            val foodDescription = items[i].seo?.web?.metaTags?.description ?: "N/A"
-                            val foodPreparationSteps = items[i].content?.prepartionsSteps ?: "N/A"
-                            val foodPreparationStepsNew = puncRemoval(foodPreparationSteps.toString(), 1, 1)
-                            val foodVideos = items[i].content?.videos?.originalVideoUrl ?: "N/A"
-                            val foodTotalTime = items[i].content?.details?.totalTime ?: "N/A"
-                            val foodNumberOfServings = items[i].content?.details?.numberOfServings ?: "N/A"
-                            val foodRatings = items[i].content?.details?.rating ?: "N/A"
+                            items[i].let {
+                                val foodName = it.display?.displayName ?: "N/A"
+                                val foodImage = it.display?.images ?: "N/A"
+                                val foodImageNew = puncRemoval(foodImage.toString(), 1, 1)
+                                val foodDescription = it.seo?.web?.metaTags?.description ?: "N/A"
+                                val foodPreparationSteps = it.content?.prepartionsSteps ?: "N/A"
+                                val foodPreparationStepsNew = puncRemoval(foodPreparationSteps.toString(), 1, 1)
+                                val foodVideos = it.content?.videos?.originalVideoUrl ?: "N/A"
+                                val foodTotalTime = it.content?.details?.totalTime ?: "N/A"
+                                val foodNumberOfServings = it.content?.details?.numberOfServings ?: "N/A"
+                                val foodRatings = it.content?.details?.rating ?: "N/A"
 
-                            val dataRecipe =
-                                RecipeModel(
-                                    foodName,
-                                    foodImageNew,
-                                    foodDescription,
-                                    foodPreparationStepsNew,
-                                    foodVideos,
-                                    foodTotalTime,
-                                    foodNumberOfServings,
-                                    foodRatings
-                                )
-                            recipeArray.add(dataRecipe)
+                                val dataRecipe =
+                                    RecipeModel(
+                                        foodName,
+                                        foodImageNew,
+                                        foodDescription,
+                                        foodPreparationStepsNew,
+                                        foodVideos,
+                                        foodTotalTime,
+                                        foodNumberOfServings,
+                                        foodRatings
+                                    )
+                                recipeArray.add(dataRecipe)
+                            }
                         }
 
                         for (j in 0 until items.count()) {
@@ -89,29 +91,32 @@ class RemoteRepository() {
                         }
 
                         for (l in 0 until items.count()){
-                            val foodName = recipeArray[l].foodName
-                            val foodImage = recipeArray[l].foodImage
-                            val foodDescription = recipeArray[l].foodDescription
-                            val foodPreparation = recipeArray[l].foodPreparationSteps
-                            val foodVideo = recipeArray[l].foodVideos
-                            val foodTotalTime = recipeArray[l].foodTotalTime
-                            val foodNumberOfServings = recipeArray[l].foodNumberOfServings
-                            val foodRating = recipeArray[l].foodRatings
-                            val foodIngredients = fullIngredientsArray[l].fullIngredients.toString()
 
-                            val database =
-                                DatabaseModel(
-                                    foodName,
-                                    foodImage,
-                                    foodDescription,
-                                    foodPreparation,
-                                    foodVideo,
-                                    foodTotalTime,
-                                    foodNumberOfServings,
-                                    foodRating,
-                                    foodIngredients
-                                )
-                            databaseFullRecipeLivedata!!.postValue(database)
+                            recipeArray[l].let {
+                                val foodName = it.foodName
+                                val foodImage = it.foodImage
+                                val foodDescription = it.foodDescription
+                                val foodPreparation = it.foodPreparationSteps
+                                val foodVideo = it.foodVideos
+                                val foodTotalTime = it.foodTotalTime
+                                val foodNumberOfServings = it.foodNumberOfServings
+                                val foodRating = it.foodRatings
+                                val foodIngredients = fullIngredientsArray[l].fullIngredients.toString()
+
+                                val database =
+                                    DatabaseModel(
+                                        foodName,
+                                        foodImage,
+                                        foodDescription,
+                                        foodPreparation,
+                                        foodVideo,
+                                        foodTotalTime,
+                                        foodNumberOfServings,
+                                        foodRating,
+                                        foodIngredients
+                                    )
+                                databaseFullRecipeLivedata!!.postValue(database)
+                            }
                         }
 
                     } else {
