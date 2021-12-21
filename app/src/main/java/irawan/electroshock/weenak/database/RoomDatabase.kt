@@ -47,7 +47,7 @@ abstract class RecipeRoomDatabase : RoomDatabase() {
                         val jsonObj = RemoteRepository().getDatabaseFullRecipeLivedata()
                         val jsonObjNew = Gson().toJson(jsonObj)
                         val recipeType = object : TypeToken<DatabaseModel>() {}.type
-                         val recipe: DatabaseModel = Gson().fromJson(jsonObjNew, recipeType)
+                        val recipe: DatabaseModel = Gson().fromJson(jsonObjNew, recipeType)
 
 //                        populateDatabase(
 //                            database,
@@ -68,5 +68,5 @@ abstract class RecipeRoomDatabase : RoomDatabase() {
 
         }
 
-        }
+    }
 }
