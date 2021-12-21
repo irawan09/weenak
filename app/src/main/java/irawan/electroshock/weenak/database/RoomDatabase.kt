@@ -25,14 +25,11 @@ abstract class RecipeRoomDatabase : RoomDatabase() {
             context: Context,
             scope: CoroutineScope
         ): RecipeRoomDatabase {
-            // if the INSTANCE is not null, then return it,
-            // if it is, then create the database
-            return INSTANCE
-                ?: kotlin.synchronized(this) {
+            return INSTANCE ?: kotlin.synchronized(this) {
                     val instance = Room.databaseBuilder(
                         context.applicationContext,
                         RecipeRoomDatabase::class.java,
-                        "developer_database"
+                        "recipe_database"
                     ).fallbackToDestructiveMigration()
                         .addCallback(DeveloperDatabaseCallback(scope))
                         .build()
@@ -44,8 +41,7 @@ abstract class RecipeRoomDatabase : RoomDatabase() {
         private class DeveloperDatabaseCallback(private val scope: CoroutineScope) : RoomDatabase.Callback() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
-                // If you want to keep the data through app restarts,
-                // comment out the following line.
+
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
                         val jsonObj = RemoteRepository().getDatabaseFullRecipeLivedata()
@@ -61,10 +57,6 @@ abstract class RecipeRoomDatabase : RoomDatabase() {
                 }
             }
         }
-
-        // Populate the database from company.json file - needs to be in a new coroutine
-        // If needed, you can parse the fields you want from the database and use them
-        // This example shows a list by the Developer object/class
 
         fun populateDatabase(database: RecipeRoomDatabase, recipe: DatabaseModel) {
             val recipeDao = database.recipeDao()
