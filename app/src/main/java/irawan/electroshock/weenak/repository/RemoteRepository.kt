@@ -132,9 +132,4 @@ class RemoteRepository() {
         return databaseFullRecipeLivedata!!
     }
 
-//    @Suppress("RedundantSuspendModifier")
-//    @WorkerThread
-//    suspend fun  insert(databaseModel: DatabaseModel){
-//        recipeDao.insertData(databaseModel)
-//    }
 }
