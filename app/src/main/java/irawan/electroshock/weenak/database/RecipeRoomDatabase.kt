@@ -13,58 +13,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [DatabaseModel::class], version = 15, exportSchema = false)
+@Database(entities = [DatabaseModel::class], version = 1, exportSchema = false)
 abstract class RecipeRoomDatabase : RoomDatabase() {
     abstract fun recipeDao(): RecipeDao
 
-    companion object{
-        @Volatile
-        private var INSTANCE: RecipeRoomDatabase? = null
-
-        fun getDatabase(
-            context: Context,
-            scope: CoroutineScope
-        ): RecipeRoomDatabase {
-            return INSTANCE ?: kotlin.synchronized(this) {
-                    val instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        RecipeRoomDatabase::class.java,
-                        "recipe_database"
-                    ).fallbackToDestructiveMigration()
-                        .addCallback(DeveloperDatabaseCallback(scope))
-                        .build()
-                    INSTANCE = instance
-                    instance
-                }
-        }
-
-        private class DeveloperDatabaseCallback(private val scope: CoroutineScope) : RoomDatabase.Callback() {
-            override fun onOpen(db: SupportSQLiteDatabase) {
-                super.onOpen(db)
-
-                INSTANCE?.let { database ->
-                    scope.launch(Dispatchers.IO) {
-                        val jsonObj = RemoteRepository().getDatabaseFullRecipeLivedata()
-                        val jsonObjNew = Gson().toJson(jsonObj)
-                        val recipeType = object : TypeToken<DatabaseModel>() {}.type
-                        val recipe: DatabaseModel = Gson().fromJson(jsonObjNew, recipeType)
-
-                        populateDatabase(
-                            database,
-                            recipe
-                        )
-                    }
-                }
-            }
-        }
-
-        fun populateDatabase(database: RecipeRoomDatabase, recipe: DatabaseModel) {
-            val recipeDao = database.recipeDao()
-
-            // Empty database on first load
-            recipeDao.deleteAll()
-
-            recipeDao.insertData(DatabaseModel(recipe.toString()))
-        }
-    }
 }

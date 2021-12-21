@@ -7,10 +7,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "recipe_table")
 data class DatabaseModel (
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "name")
-    @NonNull
-    var dcFoodName : String = "N/A",
     @ColumnInfo(name = "image")
     @NonNull
     var dcFoodImage : String = "N/A",
@@ -31,4 +27,9 @@ data class DatabaseModel (
     @ColumnInfo(name = "ingredients")
     @NonNull
     var dcFootIngredients: String? = "N/A"
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "name")
+    @NonNull
+    var dcFoodName : String = "N/A"
+}
