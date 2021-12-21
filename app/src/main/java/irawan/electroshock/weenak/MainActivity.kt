@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
         })
 
         viewModel.getDatabaseRecipeResponseLiveData().observe(this,{
-                Log.d("Database", it.dcFoodName)
+                Log.d("Database", it.toString())
         })
     }
 
