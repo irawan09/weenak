@@ -49,10 +49,10 @@ abstract class RecipeRoomDatabase : RoomDatabase() {
                         val recipeType = object : TypeToken<DatabaseModel>() {}.type
                         val recipe: DatabaseModel = Gson().fromJson(jsonObjNew, recipeType)
 
-//                        populateDatabase(
-//                            database,
-//                            recipe
-//                        )
+                        populateDatabase(
+                            database,
+                            recipe
+                        )
                     }
                 }
             }
@@ -65,8 +65,6 @@ abstract class RecipeRoomDatabase : RoomDatabase() {
             recipeDao.deleteAll()
 
             recipeDao.insertData(DatabaseModel(recipe.toString()))
-
         }
-
     }
 }
