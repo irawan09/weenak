@@ -23,6 +23,8 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.compose.rememberImagePainter
@@ -39,6 +41,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContext(this)
+        setLifeCycleOwner(this)
         viewModel = ViewModelProvider(this).get((DataViewModel::class.java))
         viewModel.getFullRecipeResponseLiveData().observe(this, Observer {
             setContent {
@@ -56,12 +59,13 @@ class MainActivity : ComponentActivity() {
         })
 
         viewModel.getDatabaseRecipeResponseLiveData().observe(this,{
-                Log.d("Database", it.toString())
+//                Log.d("Database", it.toString())
         })
     }
 
     companion object{
         private lateinit var context: Context
+        private lateinit var lifecycleOwner : LifecycleOwner
 
         fun setContext(con: Context){
             context = con
@@ -69,6 +73,14 @@ class MainActivity : ComponentActivity() {
 
         fun getContext() : Context{
             return context
+        }
+
+        fun setLifeCycleOwner(owner: LifecycleOwner){
+            lifecycleOwner = owner
+        }
+
+        fun getLifeCycleOwner() : LifecycleOwner{
+            return lifecycleOwner
         }
 
         fun stringToList(data : String) : List<String>{

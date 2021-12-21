@@ -24,6 +24,10 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
             fullRecipeResponseLiveData = it?.getFullRecipeResponseLiveData()
             databaseResponseLiveData = it?.getDatabaseFullRecipeLivedata()
         }
+        databaseResponseLiveData?.observe(MainActivity.getLifeCycleOwner(), Observer {
+            Log.d("Database", it.toString())
+        })
+
 
         db = Room.databaseBuilder(MainActivity.getContext(), RecipeRoomDatabase::class.java,"recipe-db").build()
 
