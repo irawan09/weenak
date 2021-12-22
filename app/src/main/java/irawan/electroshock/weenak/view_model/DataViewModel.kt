@@ -27,7 +27,7 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
         db = Room.databaseBuilder(MainActivity.getContext(), RecipeRoomDatabase::class.java,"recipe-db").build()
 
         databaseResponseLiveData?.observe(MainActivity.getLifeCycleOwner(), Observer {
-            Log.d("Database", it.toString())
+            db!!.recipeDao().insertData(it)
         })
     }
 
