@@ -48,18 +48,10 @@ class MainActivity : ComponentActivity() {
                 WeenakTheme {
                     Surface(color = MaterialTheme.colors.background) {
                         var utility = it.utilityRecipe
-//                        var ingredients = it.ingredients
-//                        ingredients?.toList()
-//                        Log.d("Utility Data ", utility?.toList().toString())
-//                        Log.d("Jumlah Utility data ", utility?.toList()?.size.toString())
                         DataCard(utility?.toList())
                     }
                 }
             }
-        })
-
-        viewModel.getDatabaseRecipeResponseLiveData().observe(this,{
-//                Log.d("Database", it.toString())
         })
     }
 
