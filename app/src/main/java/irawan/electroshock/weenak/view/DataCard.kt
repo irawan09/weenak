@@ -30,7 +30,7 @@ LazyColumn {
                         .fillMaxWidth()
                         .padding(all = 4.dp)
                         .clickable {
-                            Log.d("Data clicked ", recipeModel[index].toString())
+                            detailsRecipe(details = recipeModel[index])
                         }) {
                         var foodName = recipeModel[index].foodName
                         var foodImage = recipeModel[index].foodImage
