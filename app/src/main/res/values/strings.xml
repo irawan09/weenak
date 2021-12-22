@@ -1,4 +1,3 @@
 <resources>
-    <string name="app_name">Weenak</string>
-    <string name="recipeRes">company.json</string>
+    <string name="app_name">WeEnak</string>
 </resources>

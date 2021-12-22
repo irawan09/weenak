@@ -42,17 +42,19 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContext(this)
         setLifeCycleOwner(this)
-        viewModel = ViewModelProvider(this).get((DataViewModel::class.java))
-        viewModel.getFullRecipeResponseLiveData().observe(this, Observer {
-            setContent {
-                WeenakTheme {
-                    Surface(color = MaterialTheme.colors.background) {
-                        var utility = it.utilityRecipe
-                        DataCard(utility?.toList())
-                    }
-                }
-            }
-        })
+//        setContentView(R.layout.activity_main)
+
+//        viewModel = ViewModelProvider(this).get((DataViewModel::class.java))
+//        viewModel.getFullRecipeResponseLiveData().observe(this, Observer {
+//            setContent {
+//                WeenakTheme {
+//                    Surface(color = MaterialTheme.colors.background) {
+//                        var utility = it.utilityRecipe
+//                        DataCard(utility?.toList())
+//                    }
+//                }
+//            }
+//        })
     }
 
     companion object{

@@ -1,5 +1,6 @@
 package irawan.electroshock.weenak.view
 
+import android.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,9 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.fragment.findNavController
 import coil.compose.rememberImagePainter
 import irawan.electroshock.weenak.model.RecipeModel
 import irawan.electroshock.weenak.utils.Utils
+import irawan.electroshock.weenak.view.fragment.RecipeListFragment
 
 @Composable
 fun DataCard(recipeModel: List<RecipeModel>?) {
@@ -31,6 +34,7 @@ LazyColumn {
                         .padding(all = 4.dp)
                         .clickable {
                             Utils().detailsRecipe = recipeModel[index]
+//                            RecipeListFragment().findNavController().navigate(R.id.action)
                         }) {
                         var foodName = recipeModel[index].foodName
                         var foodImage = recipeModel[index].foodImage
