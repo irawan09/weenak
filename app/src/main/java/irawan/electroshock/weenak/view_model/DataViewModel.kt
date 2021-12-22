@@ -29,8 +29,6 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
         databaseResponseLiveData?.observe(MainActivity.getLifeCycleOwner(), Observer {
             Log.d("Database", it.toString())
         })
-
-
     }
 
     fun getFullRecipeResponseLiveData() : LiveData<FullRecipe>{
