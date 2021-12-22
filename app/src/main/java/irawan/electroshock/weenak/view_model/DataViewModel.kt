@@ -4,12 +4,9 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import irawan.electroshock.weenak.MainActivity
-import irawan.electroshock.weenak.database.RecipeDao
 import irawan.electroshock.weenak.database.RecipeRoomDatabase
 import irawan.electroshock.weenak.model.*
-import irawan.electroshock.weenak.repository.DatabaseRepository
 import irawan.electroshock.weenak.repository.RemoteRepository
 
 class DataViewModel(application: Application) : AndroidViewModel(application) {
