@@ -1,5 +1,6 @@
 package irawan.electroshock.weenak.view
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -28,7 +29,9 @@ LazyColumn {
                     Card(elevation = 4.dp, modifier = Modifier
                         .fillMaxWidth()
                         .padding(all = 4.dp)
-                        .clickable { }) {
+                        .clickable {
+                            Log.d("Data clicked ", recipeModel[index].toString())
+                        }) {
                         var foodName = recipeModel[index].foodName
                         var foodImage = recipeModel[index].foodImage
                         foodImage =

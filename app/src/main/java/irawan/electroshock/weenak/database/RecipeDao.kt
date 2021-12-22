@@ -16,7 +16,6 @@ interface RecipeDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertData(databaseModel: DatabaseModel){
-        Log.d("Database ", databaseModel.dcFoodName)
     }
 
     @Query("DELETE FROM recipe_table")
