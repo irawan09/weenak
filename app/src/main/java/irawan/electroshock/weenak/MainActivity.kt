@@ -44,17 +44,17 @@ class MainActivity : ComponentActivity() {
         setLifeCycleOwner(this)
 //        setContentView(R.layout.activity_main)
 
-//        viewModel = ViewModelProvider(this).get((DataViewModel::class.java))
-//        viewModel.getFullRecipeResponseLiveData().observe(this, Observer {
-//            setContent {
-//                WeenakTheme {
-//                    Surface(color = MaterialTheme.colors.background) {
-//                        var utility = it.utilityRecipe
-//                        DataCard(utility?.toList())
-//                    }
-//                }
-//            }
-//        })
+        viewModel = ViewModelProvider(this).get((DataViewModel::class.java))
+        viewModel.getFullRecipeResponseLiveData().observe(this, Observer {
+            setContent {
+                WeenakTheme {
+                    Surface(color = MaterialTheme.colors.background) {
+                        var utility = it.utilityRecipe
+                        DataCard(utility?.toList())
+                    }
+                }
+            }
+        })
     }
 
     companion object{
