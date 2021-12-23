@@ -33,6 +33,9 @@ import irawan.electroshock.weenak.model.RecipeModel
 import irawan.electroshock.weenak.ui.theme.WeenakTheme
 import irawan.electroshock.weenak.view.DataCard
 import irawan.electroshock.weenak.view_model.DataViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -45,12 +48,15 @@ class MainActivity : ComponentActivity() {
 //        setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProvider(this).get((DataViewModel::class.java))
+
         viewModel.getFullRecipeResponseLiveData().observe(this, Observer {
-            setContent {
-                WeenakTheme {
-                    Surface(color = MaterialTheme.colors.background) {
-                        var utility = it.utilityRecipe
-                        DataCard(utility?.toList())
+            CoroutineScope(Dispatchers.Main).launch {
+                setContent {
+                    WeenakTheme {
+                        Surface(color = MaterialTheme.colors.background) {
+                            var utility = it.utilityRecipe
+                            DataCard(utility?.toList())
+                        }
                     }
                 }
             }
