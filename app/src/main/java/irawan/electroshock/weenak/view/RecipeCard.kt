@@ -13,11 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.fragment.findNavController
 import coil.compose.rememberImagePainter
 import irawan.electroshock.weenak.model.RecipeModel
 import irawan.electroshock.weenak.utils.Utils
-import irawan.electroshock.weenak.view.fragment.RecipeListFragment
+
 
 @Composable
 fun DataCard(recipeModel: List<RecipeModel>?) {
@@ -37,7 +36,7 @@ LazyColumn {
 //                            RecipeListFragment().findNavController().navigate(R.id.action)
                         }) {
                         var foodName = recipeModel[index].foodName
-                        var foodImage = recipeModel[index].foodImage
+                         var foodImage = recipeModel[index].foodImage
                         foodImage =
                             "https://cdn.idntimes.com/content-images/post/20171218/sushi-2853382-960-720-cbef753042b7fa7672e3b65cc67c68fb.jpg"
                         var foodDescription = recipeModel[index].foodDescription
